@@ -1,0 +1,16 @@
+<ul class="outer-list">
+	<% @emails.each do |email| %>
+		<li class="outer-list"><ul class="inner-list">
+			<% JSON.parse(email.contents).each do | key, val |  %>
+				<li class="inner-list"><%= key %> --> 
+				<% case key %>
+				<% when "data" %>
+					<%= val[@body_regex] %>
+				<% else %>
+					<%= val %>
+				<% end %>
+				</li>
+			<% end %>
+		</ul></li>
+	<% end %>
+</ul>
